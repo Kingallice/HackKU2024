@@ -23,14 +23,21 @@ namespace HackKU2024NourishNet.Services
 
         public List<Category> GetCategories()
         {
-            FilterDefinition<Category> filter = Builders<Category>.Filter.Empty;
-            SortDefinition<Category> sort = Builders<Category>.Sort.Ascending("name");
-            FindOptions<Category> options = new FindOptions<Category>()
+            try
             {
-                Sort = sort
-            };
-
-            return MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<Category>("categories").FindAsync(filter, options).Result.ToList();
+                FilterDefinition<Category> filter = Builders<Category>.Filter.Empty;
+                SortDefinition<Category> sort = Builders<Category>.Sort.Ascending("name");
+                FindOptions<Category> options = new FindOptions<Category>()
+                {
+                    Sort = sort
+                };
+                return MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<Category>("categories").FindAsync(filter, options).Result.ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return new List<Category>();
         }
 
         public async Task<bool> AddCategory(string categoryName)
