@@ -35,5 +35,13 @@ namespace HackKU2024NourishNet.Configuration
                 return new MongoClient(settings);
             }
         }
+
+        public IMongoDatabase DEFAULT
+        {
+            get
+            {
+                return MongoDBClient.GetDatabase("NetNourish");
+            }
+        }
     }
 }

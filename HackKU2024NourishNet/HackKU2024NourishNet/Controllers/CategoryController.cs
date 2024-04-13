@@ -13,5 +13,11 @@ namespace HackKU2024NourishNet.Controllers
         {
             return CategoriesService.GetCategoriesService.GetCategories();
         }
+
+        [Route("AddCategory")]
+        [HttpPost] public async Task<bool> AddCategory(string categoryName)
+        {
+            return await CategoriesService.GetCategoriesService.AddCategory(categoryName);
+        }
     }
 }

@@ -9,7 +9,16 @@ namespace HackKU2024NourishNet.Models
     {
         [JsonIgnore]
         [BsonElement("_id")]
-        public BsonObjectId Id { get; set; }
+        public BsonObjectId ObjectID { get; set; }
+        [BsonIgnore]
+        public string Id
+        {
+            get
+            {
+                return ObjectID.ToString();
+            }
+        }
+
         [BsonElement("name")]
         public string Name { get; set; }
     }

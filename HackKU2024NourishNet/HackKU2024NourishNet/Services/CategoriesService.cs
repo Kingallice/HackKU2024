@@ -23,9 +23,27 @@ namespace HackKU2024NourishNet.Services
 
         public List<Category> GetCategories()
         {
-            MongoClient client = MongoDBConfig.GetMongoDBConfig.MongoDBClient;
+            return MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<Category>("categories").AsQueryable().ToList();
+        }
 
-            return client.GetDatabase("NetNourish").GetCollection<Category>("categories").AsQueryable().ToList();
+        public async Task<bool> AddCategory(string categoryName)
+        {
+            try
+            {
+                Category category = new Category()
+                {
+                    ObjectID = MongoDB.Bson.ObjectId.GenerateNewId(),
+                    Name = categoryName
+                };
+
+                MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<Category>("categories").InsertOne(category);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+            return true;
         }
     }
 }
