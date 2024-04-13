@@ -13,4 +13,10 @@
     <PackageReference Include="MongoDB.Driver" Version="2.25.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\Resources\" />
+  </ItemGroup>
 </Project>
