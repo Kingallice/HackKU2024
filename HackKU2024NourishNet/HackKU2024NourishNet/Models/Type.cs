@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace HackKU2024NourishNet.Models
 {
-    public class Category
+    public class Type
     {
         [JsonIgnore]
         [BsonElement("_id")]
