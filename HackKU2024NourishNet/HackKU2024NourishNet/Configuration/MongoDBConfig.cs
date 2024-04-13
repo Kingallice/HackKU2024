@@ -21,7 +21,18 @@ namespace HackKU2024NourishNet.Configuration
         {
             get
             {
-                return Environment.GetEnvironmentVariable("MongoDBConnectionString").Replace("<password>", Environment.GetEnvironmentVariable("MongoDBPassword"));
+                return "mongodb+srv://NetNourishAPI:<password>@hackku2024.vaslzso.mongodb.net/?retryWrites=true&w=majority&appName=HackKU2024".Replace("<password>", Environment.GetEnvironmentVariable("MongoDBPassword"));
+            }
+        }
+
+        public MongoClient MongoDBClient
+        {
+            get
+            {
+                MongoClientSettings settings = MongoClientSettings.FromConnectionString(ConnectionString);
+                settings.ServerApi = new ServerApi(ServerApiVersion.V1);
+
+                return new MongoClient(settings);
             }
         }
     }
