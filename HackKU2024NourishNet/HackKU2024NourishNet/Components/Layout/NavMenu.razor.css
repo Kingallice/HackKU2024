@@ -16,12 +16,13 @@
 }
 
 .top-row {
-    height: 3.5rem;
+    height: 5.5rem;
     background-color: rgba(0,0,0,0.4);
 }
 
 .navbar-brand {
     font-size: 1.1rem;
+    width: 20px;
 }
 
 .bi {
@@ -83,6 +84,7 @@
 
 .nav-scrollable {
     display: none;
+    width: 50%;
 }
 
 .navbar-toggler:checked ~ .nav-scrollable {
@@ -97,6 +99,7 @@
     .nav-scrollable {
         /* Never collapse the sidebar for wide screens */
         display: block;
+        width: 100%;
 
         /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
