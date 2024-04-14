@@ -3,7 +3,7 @@
 <PageTitle>Create Ticket</PageTitle>
 <h3>CreateTicket</h3>
 
-<div>
+<div class="userButtons">
     <select id="ticketType">
         @foreach (Models.Type type in Services.TypesService.GetTypesService.GetTypes("ticket_types"))
         {
@@ -20,7 +20,7 @@
     <input id="txtName" type="text" placeholder="Item Name"/>
     <input id="intQuantity" type="number" placeholder="Item Quantity"/>
     <input id="txtLabel" type="text" placeholder="Item Label" />
-
+    <button class="btn btn-primary" onclick="CreateTicket()">Add Ticket</button>
 
 </div>
 

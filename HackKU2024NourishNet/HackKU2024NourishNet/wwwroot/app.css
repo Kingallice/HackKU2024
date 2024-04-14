@@ -118,3 +118,17 @@ h1:focus {
     margin-left: 10px;
     margin-bottom: 10px;
 }
+
+.ticket-card {
+    background-color: #295135;
+    font-size: larger;
+    color: #f1edee;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    border-color: #f1edee;
+    border: solid 2px;
+}

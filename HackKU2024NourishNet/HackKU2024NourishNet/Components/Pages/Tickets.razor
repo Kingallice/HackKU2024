@@ -27,14 +27,19 @@
     <button class="btn btn-secondary" onclick="window.location.replace('/ticket')">+ New Ticket</button>
     <input class="textInput" type="text" placeholder="Search for items" /><br /><br />
 </div>
+</div><br/>
 
 
 @foreach (Models.Ticket ticket in Services.TicketsService.GetTicketsService.GetTickets(0))
 {
-    <div class="userButtons">
+    <div class="ticket-card">
         <table>
-            <tr class="ticketH1"><td>@ticket.ItemName</td><td>@ticket.ItemQuantity</td></tr>
-            <tr class="ticketH2"><td>@ticket.TicketType</td><td>@ticket.Organization</td></tr>
+            <tr>
+                
+                <td><strong>@Services.TypesService.GetTypesService.GetTypeById("ticket_types", @ticket.TicketType).Name</strong></td>
+                <td>@Services.TypesService.GetTypesService.GetTypeById("org_types", @ticket.OrgType).Name</td></tr>
+            <tr>
+                <td colspan="2" style="font-size: 30pt;">@ticket.ItemQuantity <strong>@ticket.ItemName</strong></td></tr>
         </table>
     </div>
 }
