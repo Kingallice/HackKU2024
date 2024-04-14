@@ -6,3 +6,21 @@
 <h1>Welcome to the N-NET</h1>
 
 <p>This component demonstrates showing data.</p>
+
+<script>
+    let data = new FormData();
+    data.set("id", sessionStorage.getItem("userid"));
+    data.set("cert", sessionStorage.getItem("cert"));
+
+    var xmlHttp = new XMLHttpRequest();
+
+    xmlHttp.open("POST", "/api/validatelogin")
+    xmlHttp.onload = () => {
+        let valid = xmlHttp.responseText == "false" ? false : true;
+
+        if (!valid)
+            window.location.replace("/login");
+    };
+
+    xmlHttp.send(data);
+</script>

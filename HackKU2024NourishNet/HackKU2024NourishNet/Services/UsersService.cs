@@ -129,12 +129,22 @@ namespace HackKU2024NourishNet.Services
 
         public string LoginUser(string email, string password)
         {
-            User user = GetUserByEmail(email);
+            try
+            {
+                User user = GetUserByEmail(email);
 
-            string cert = (user != null && new PasswordHasher<User>().VerifyHashedPassword(user, user.Password, password).HasFlag(PasswordVerificationResult.Success)) ? Guid.NewGuid().ToString().Replace("-","") : null;
+                string cert = (user != null && new PasswordHasher<User>().VerifyHashedPassword(user, user.Password, password).HasFlag(PasswordVerificationResult.Success)) ? Guid.NewGuid().ToString().Replace("-", "") : null;
 
-            if(AuthLogin(user.Id, cert).Result);
-                return cert;
+                if (user != null)
+                {
+                    if (AuthLogin(user.Id, cert).Result) ;
+                    return user.Id + ":" + cert;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
             return null;
         }
 

@@ -75,6 +75,7 @@ h1:focus {
     margin-right: auto;
     margin-top: 30px;
     width: 80%;
+    max-width: 45vw;
 }
 
 .userButtons {

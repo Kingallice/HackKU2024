@@ -1,0 +1,36 @@
+﻿@page "/login"
+
+<h3>Login</h3>
+
+<div>
+    <form action="" method="POST">
+
+        <input class=".textInput" id="txtEmail" type="email" name="email" placeholder="Email..."/>
+        <input class=".textInput" id="txtPassword" type="password" name="password" placeholder="Password..."/>
+
+        <input type="button" name="btnSubmit" value="Login" onclick="login()"/>
+
+    </form>
+</div>
+
+
+<script>
+    function login(){
+        let data = new FormData();
+        data.set("email", document.getElementById("txtEmail").value);
+        data.set("password", document.getElementById("txtPassword").value);
+
+        var xmlHttp = new XMLHttpRequest();
+
+        xmlHttp.open("POST", "/api/login")
+        xmlHttp.onload = () => {
+            let fields = xmlHttp.responseText.split(":");
+            sessionStorage.setItem("userid", fields[0]);
+            sessionStorage.setItem("cert", fields[1]);
+
+            window.location.replace("/");
+        };
+
+        xmlHttp.send(data);
+    }
+</script>
