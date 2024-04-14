@@ -42,14 +42,15 @@ namespace HackKU2024NourishNet.Services
             return new List<Ticket>();
         }
 
-        public async Task<bool> CreateTicket(string orgId, string categoryId, string ticketType, string itemName, double itemQuantity, string itemLabel)
+        public async Task<bool> CreateTicket(string userId, string categoryId, string ticketType, string itemName, double itemQuantity, string itemLabel)
         {
             try
             {
+                User user = UsersService.GetUsersService.GetUserById(userId);
                 Ticket ticket = new Ticket()
                 {
                     ObjectId = ObjectId.GenerateNewId(),
-                    OrgId = ObjectId.Parse(orgId),
+                    OrgId = user.Org,
                     CategoryId = ObjectId.Parse(categoryId),
                     TicketTypeId = ObjectId.Parse(ticketType),
                     ItemName = itemName,
@@ -58,7 +59,7 @@ namespace HackKU2024NourishNet.Services
                     IsClaimed = false,
                     CreatedAt = DateTime.Now
                 };
-                ticket.OrgTypeId = OrganizationsService.GetOrganizationsService.GetOrganizationById(orgId).OrgType;
+                ticket.OrgTypeId = OrganizationsService.GetOrganizationsService.GetOrganizationById(user.OrgId).OrgType;
 
                 MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<Ticket>("tickets").InsertOne(ticket);
             }

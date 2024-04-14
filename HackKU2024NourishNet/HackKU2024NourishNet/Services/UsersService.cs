@@ -79,6 +79,24 @@ namespace HackKU2024NourishNet.Services
             }
             return null;
         }
+        public User GetUserById(string id)
+        {
+            try
+            {
+                FilterDefinition<User> filter = Builders<User>.Filter.Where((x) => x.ObjectId.ToString().Equals(id));
+                FindOptions<User> options = new FindOptions<User>()
+                {
+                    Limit = 1
+                };
+
+                return MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<User>("users").FindAsync(filter, options).Result.First();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return null;
+        }
         public User CreateNewUser(string firstName, string lastName, string email, string phone, string password)
         {
             User user = new User()
