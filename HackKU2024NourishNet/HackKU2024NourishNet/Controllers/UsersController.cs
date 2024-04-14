@@ -21,6 +21,13 @@ namespace HackKU2024NourishNet.Controllers
             return UsersService.GetUsersService.GetUserByEmail(email);
         }
 
+        [Route("GetUserById")]
+        [HttpGet]
+        public User GetUserById(string id)
+        {
+            return UsersService.GetUsersService.GetUserById(id);
+        }
+
         [Route("GetUsersByOrg")]
         [HttpGet]
         public List<User> GetUsersByOrg(string orgId)

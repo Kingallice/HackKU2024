@@ -1,0 +1,67 @@
+﻿@page "/ticket"
+
+<PageTitle>Create Ticket</PageTitle>
+<h3>CreateTicket</h3>
+
+<div>
+    <select id="ticketType">
+        @foreach (Models.Type type in Services.TypesService.GetTypesService.GetTypes("ticket_types"))
+        {
+            <option value="@type.Id">@type.Name</option>
+        }
+    </select>
+
+    <select id="categoryType">
+        @foreach(Models.Type type in Services.TypesService.GetTypesService.GetTypes("categories")){
+            <option value="@type.Id">@type.Name</option>
+        }
+    </select>
+
+    <input id="txtName" type="text" placeholder="Item Name"/>
+    <input id="intQuantity" type="number" placeholder="Item Quantity"/>
+    <input id="txtLabel" type="text" placeholder="Item Label" />
+
+
+</div>
+
+<script>
+    function CreateTicket() {
+        let data = new FormData();
+        data.set("userId", sessionStorage.getItem("userid"));
+        data.set("categoryId", document.getElementById("categoryType").value);
+        data.set("typeId", document.getElementById("ticketType").value);
+        data.set("itemName", document.getElementById("txtName").value);
+        data.set("itemQuantity", document.getElementById("intQuantity").value);
+        data.set("itemLabel", document.getElementById("txtLabel").value);
+
+        var xmlHttp = new XMLHttpRequest();
+
+        xmlHttp.open("POST", "/api/createticket")
+        xmlHttp.onload = () => {
+            let valid = xmlHttp.responseText == "false" ? false : true;
+
+            if (!valid)
+                window.location.replace("/tickets");
+        };
+
+        xmlHttp.send(data);
+    }
+</script>
+
+<script>
+    let data = new FormData();
+    data.set("id", sessionStorage.getItem("userid"));
+    data.set("cert", sessionStorage.getItem("cert"));
+
+    var xmlHttp = new XMLHttpRequest();
+
+    xmlHttp.open("POST", "/api/validatelogin")
+    xmlHttp.onload = () => {
+        let valid = xmlHttp.responseText == "false" ? false : true;
+
+        if (!valid)
+            window.location.replace("/login");
+    };
+
+    xmlHttp.send(data);
+</script>

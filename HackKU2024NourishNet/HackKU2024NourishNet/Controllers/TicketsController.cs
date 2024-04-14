@@ -16,9 +16,9 @@ namespace HackKU2024NourishNet.Controllers
 
         [Route("CreateTicket")]
         [HttpPost]
-        public Task<bool> CreateTicket(string orgId, string typeId, string categoryId, string itemName, double itemQuantity, string itemLabel)
+        public Task<bool> CreateTicket(string userId, string typeId, string categoryId, string itemName, double itemQuantity, string itemLabel)
         {
-            return TicketsService.GetTicketsService.CreateTicket(orgId, categoryId, typeId, itemName, itemQuantity, itemLabel);
+            return TicketsService.GetTicketsService.CreateTicket(userId, categoryId, typeId, itemName, itemQuantity, itemLabel);
         }
     }
 }
