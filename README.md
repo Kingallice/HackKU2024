@@ -17,7 +17,7 @@ Recently, the grocery store that one of friends works at lost power twice within
 NourishNET is a web application to connect food banks to grocers and other food vendors looking to donate food.  The app allows stores to post offers of different food items for the different food banks to accept.  The food banks can also post different requests that stores can accept and fulfill.
 
 ## How we built it
-We used ASP.NET for the front and back end, MongoDB Atlas for the database, and GitHub for version control.
+We used ASP.NET, HTML, CSS, and JavaScript for the web stack; MongoDB Atlas for the database; and GitHub for version control.
 
 ## Challenges we ran into
 Two of our three group members have not previously used ASP.NET, so it took some time to get acclimated.  
