@@ -14,6 +14,13 @@ namespace HackKU2024NourishNet.Controllers
             return TypesService.GetTypesService.GetTypes(collection);
         }
 
+        [Route("GetTypeById")]
+        [HttpGet]
+        public Models.Type GetTypeById(string collection, string id)
+        {
+            return TypesService.GetTypesService.GetTypeById(collection, id);
+        }
+
         [Route("AddType")]
         [HttpPost] public async Task<bool> AddCategory(string collection, string name)
         {

@@ -40,6 +40,24 @@ namespace HackKU2024NourishNet.Services
             return new List<Models.Type>();
         }
 
+        public Models.Type GetTypeById(string collection, string id)
+        {
+            try
+            {
+                FilterDefinition<Models.Type> filter = Builders<Models.Type>.Filter.Where((x) => x.ObjectID.ToString().Equals(id));
+                FindOptions<Models.Type> options = new FindOptions<Models.Type>()
+                {
+                    Limit = 1
+                };
+                return MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<Models.Type>(collection).FindAsync(filter, options).Result.First();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return null;
+        }
+
         public async Task<bool> AddType(string collection, string name)
         {
             try
