@@ -1,21 +1,5 @@
 ﻿@page "/tickets"
 
-<script>let data = new FormData();
-    data.set("id", sessionStorage.getItem("userid"));
-    data.set("cert", sessionStorage.getItem("cert"));
-
-    var xmlHttp = new XMLHttpRequest();
-
-    xmlHttp.open("POST", "/api/validatelogin")
-    xmlHttp.onload = () => {
-        let valid = xmlHttp.responseText == "false" ? false : true;
-
-        if (!valid)
-            window.location.replace("/login");
-    };
-
-    xmlHttp.send(data);
-</script>
 
 <PageTitle>N-NET</PageTitle>
 
@@ -26,7 +10,6 @@
 <div class="userButtons">
     <button class="btn btn-secondary" onclick="window.location.replace('/ticket')">+ New Ticket</button>
     <input class="textInput" type="text" placeholder="Search for items" /><br /><br />
-</div>
 </div><br/>
 
 
@@ -43,3 +26,23 @@
         </table>
     </div>
 }
+
+<script>
+    let data = new FormData();
+    data.set("id", sessionStorage.getItem("userid"));
+    data.set("cert", sessionStorage.getItem("cert"));
+
+    var xmlHttp = new XMLHttpRequest();
+
+    xmlHttp.open("POST", "/api/validatelogin")
+    xmlHttp.onload = () => {
+        let valid = xmlHttp.responseText == "false" ? false : true;
+
+        if (valid);
+
+        else
+            window.location.replace("/login");
+    };
+
+    xmlHttp.send(data);
+</script>
