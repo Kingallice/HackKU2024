@@ -30,7 +30,10 @@ namespace HackKU2024NourishNet.Services
                 {
                     Sort = sort
                 };
-                return MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<Organization>("organizations").FindAsync(filter, options).Result.ToList();
+                List<Organization> orgs = MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<Organization>("organizations").FindAsync(filter, options).Result.ToList();
+                orgs.ForEach(x => x.AuthorizedUsers = UsersService.GetUsersService.GetUsersByOrganization(x.Id));
+
+                return orgs;
             }
             catch (Exception ex)
             {
@@ -65,6 +68,49 @@ namespace HackKU2024NourishNet.Services
                 return false;
             }
             return true;
+        }
+
+        public Organization GetOrganizationById(string orgId)
+        {
+            try
+            {
+                FilterDefinition<Organization> filter = Builders<Organization>.Filter.Where((x) => x.ObjectId.ToString().Equals(orgId));
+                SortDefinition<Organization> sort = Builders<Organization>.Sort.Ascending("name");
+                FindOptions<Organization> options = new FindOptions<Organization>()
+                {
+                    Sort = sort,
+                    Limit = 1
+                };
+                Organization org = MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<Organization>("organizations").FindAsync(filter, options).Result.FirstOrDefault();
+                org.AuthorizedUsers = UsersService.GetUsersService.GetUsersByOrganization(org.Id);
+
+                return org;
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+            }
+            return null;
+        }
+
+        public async Task<bool> IsAdmin(string orgId, string userId)
+        {
+            try
+            {
+                FilterDefinition<Organization> filter = Builders<Organization>.Filter.Where((x) => x.ObjectId.ToString().Equals(orgId));
+                SortDefinition<Organization> sort = Builders<Organization>.Sort.Ascending("name");
+                FindOptions<Organization> options = new FindOptions<Organization>()
+                {
+                    Sort = sort,
+                    Limit = 1
+                };
+                return MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<Organization>("organizations").FindAsync(filter, options).Result.FirstOrDefault().MainContact.ToString().Equals(userId);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+            }
+            return false;
         }
     }
 }

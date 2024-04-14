@@ -20,5 +20,19 @@ namespace HackKU2024NourishNet.Controllers
         {
             return OrganizationsService.GetOrganizationsService.AddOrganization(name, orgType, firstName, lastName, email, phone, password);
         }
+
+        [Route("GetOrganizationById")]
+        [HttpGet]
+        public Organization GetOrganizationById(string orgId)
+        {
+            return OrganizationsService.GetOrganizationsService.GetOrganizationById(orgId);
+        }
+
+        [Route("IsAdmin")]
+        [HttpPost]
+        public Task<bool> IsAdmin(string orgId, string userId)
+        {
+            return OrganizationsService.GetOrganizationsService.IsAdmin(orgId, userId);
+        }
     }
 }

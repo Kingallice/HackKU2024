@@ -97,7 +97,7 @@ namespace HackKU2024NourishNet.Services
         {
             try
             {
-                FilterDefinition<User> filter = Builders<User>.Filter.Where((x) => x.OrgId == orgId);
+                FilterDefinition<User> filter = Builders<User>.Filter.Where((x) => x.Org.ToString().Equals(orgId));
                 SortDefinition<User> sort = Builders<User>.Sort.Ascending("lname").Ascending("fname");
                 FindOptions<User> options = new FindOptions<User>()
                 {

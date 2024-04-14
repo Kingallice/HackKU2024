@@ -7,11 +7,11 @@ namespace HackKU2024NourishNet.Controllers
     [Route("/Api")]
     public class TypesController : Controller
     {
-        [Route("GetType")]
+        [Route("GetTypes")]
         [HttpGet]
         public List<Models.Type> GetTypes(string collection)
         {
-            return TypesService.GetTypesService.GetTypes();
+            return TypesService.GetTypesService.GetTypes(collection);
         }
 
         [Route("AddType")]
