@@ -23,7 +23,7 @@ We used ASP.NET, HTML, CSS, and JavaScript for the web stack; MongoDB Atlas for 
 Two of our three group members have not previously used ASP.NET, so it took some time to get acclimated.  
 
 ## Accomplishments that we're proud of
-
+We took the opportunity to try a bunch of new technology and learn new things that we have never done before. We are super proud that we learned a bunch of new things.
 
 ## What we learned
 We learned ASP.NET, MongoDB, and C#.  
