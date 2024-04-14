@@ -15,7 +15,8 @@ a, .btn-link {
     color: #295135;
     background-color: #97db4f;
     border-color: #295135;
-    padding: 15px 32px;
+    padding: 10px 20px;
+    border-radius: 15px;
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -24,6 +25,7 @@ a, .btn-link {
 
 .content {
     padding-top: 1.1rem;
+    margin: 5%;
 }
 
 h1:focus {
@@ -73,4 +75,16 @@ h1:focus {
     margin-right: auto;
     margin-top: 30px;
     width: 80%;
+}
+
+.userButtons {
+    background-color: #f1edee;
+    color: #295135;
+    width: 100%;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 25px;
+    border-radius: 20px;
+    border-color: #db5461;
+    border: solid 8px;
 }
