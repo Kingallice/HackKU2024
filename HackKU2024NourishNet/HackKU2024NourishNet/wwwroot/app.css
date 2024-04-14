@@ -88,3 +88,22 @@ h1:focus {
     border-color: #db5461;
     border: solid 8px;
 }
+
+.textInput {
+    border-radius: 15px;
+    border: solid 2px #295135;
+    padding-left: 10px;
+    border-spacing: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.select {
+    padding-bottom: 10px;
+}
+
+.dropdown {
+    border: solid 2px #295135;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,22 @@
+﻿@page "/signup"
+@attribute [StreamRendering]
+
+<PageTitle>Signup - NurtureNET</PageTitle>
+
+<h1><strong>Sign up to join the N-NET:</strong></h1>
+
+<div class="userButtons">
+    <form method="post">
+        <label>First Name:</label><input class="textInput" name="fname" /><br/>
+        <label>Last Name: </label><input class="textInput" name="lname"  /><br/>
+        <label>Organization Type: </label><select class="dropdown">
+            @foreach (Models.Type type in Services.TypesService.GetTypesService.GetTypes("org_types"))
+            {
+                <option>@type.Name</option>
+            }
+        </select><br/>
+        <button type="submit" class="btn btn-primary">
+            <i class="btn">Save</i>
+        </button>
+    </form><br/>
+</div>
