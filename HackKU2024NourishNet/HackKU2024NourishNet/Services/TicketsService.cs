@@ -33,7 +33,7 @@ namespace HackKU2024NourishNet.Services
                     Sort = sort,
                     Skip = page*50
                 };
-                MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<Ticket>("tickets").FindAsync(filter, options).Result.ToList();
+                return MongoDBConfig.GetMongoDBConfig.DEFAULT.GetCollection<Ticket>("tickets").FindAsync(filter, options).Result.ToList();
             }
             catch (Exception ex)
             {
