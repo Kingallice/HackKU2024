@@ -19,6 +19,16 @@ a, .btn-link {
     border-radius: 15px;
 }
 
+.btn-secondary {
+    color: #295135;
+    background-color: #97db4f;
+    border-color: #295135;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem #f1edee, 0 0 0 0.25rem #295135;
 }

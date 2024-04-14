@@ -1,14 +1,6 @@
 ﻿@page "/tickets"
-@attribute [StreamRendering]
 
-<PageTitle>N-NET</PageTitle>
-
-<h1>Welcome to the N-NET</h1>
-
-<p>This component demonstrates showing data.</p>
-
-<script>
-    let data = new FormData();
+<script>let data = new FormData();
     data.set("id", sessionStorage.getItem("userid"));
     data.set("cert", sessionStorage.getItem("cert"));
 
@@ -24,3 +16,25 @@
 
     xmlHttp.send(data);
 </script>
+
+<PageTitle>N-NET</PageTitle>
+
+<h1>Welcome to the N-NET</h1>
+<hr />
+
+<h4>Active offers and requests:</h4>
+<div class="userButtons">
+    <button class="btn btn-secondary">+ New Ticket</button>
+    <input class="textInput" type="text" placeholder="Search for items" /><br /><br />
+</div>
+
+
+@foreach (Models.Ticket ticket in Services.TicketsService.GetTicketsService.GetTickets(0))
+{
+    <div class="userButtons">
+        <table>
+            <tr class="ticketH1"><td>@ticket.ItemName</td><td>@ticket.ItemQuantity</td></tr>
+            <tr class="ticketH2"><td>@ticket.TicketType</td><td>@ticket.Organization</td></tr>
+        </table>
+    </div>
+}
