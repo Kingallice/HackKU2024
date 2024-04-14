@@ -7,8 +7,7 @@
 
 <div class="userButtons">
     <form method="post">
-        <label>First Name:</label><input class="textInput" name="fname" /><br/>
-        <label>Last Name: </label><input class="textInput" name="lname"  /><br/>
+        <label>Organization Name:</label><input class="textInput" name="orgName" /><br/>
         <label>Organization Type: </label><select class="dropdown">
             @foreach (Models.Type type in Services.TypesService.GetTypesService.GetTypes("org_types"))
             {
@@ -16,7 +15,7 @@
             }
         </select><br/>
         <button type="submit" class="btn btn-primary">
-            <i class="btn">Save</i>
+            <i>Save</i>
         </button>
     </form><br/>
 </div>
