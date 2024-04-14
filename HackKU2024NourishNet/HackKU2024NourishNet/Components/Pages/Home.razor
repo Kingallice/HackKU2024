@@ -6,11 +6,48 @@
 
 <h1 class="centeredText"><strong>Sharing Surplus, <br/>     Sustaining Communities</strong></h1><br/>
 
-<div class="userButtons">
-<h3>Make a difference:</h3>
-<button class="btn btn-primary"><strong>SIGN-IN</strong></button>
-<button class="btn btn-primary"><strong>REGISTER</strong></button><br/><br/>
-<a>
-    <em>Thank you for helping fight hunger and reduce food waste!</em><br /><br/>
+<script>
+    let data = new FormData();
+    data.set("id", sessionStorage.getItem("userid"));
+    data.set("cert", sessionStorage.getItem("cert"));
+
+    var xmlHttp = new XMLHttpRequest();
+
+    xmlHttp.open("POST", "/api/validatelogin")
+    xmlHttp.onload = () => {
+        let valid = xmlHttp.responseText == "false" ? false : true;
+
+        if (!valid) {
+            document.getElementById("usrBtnGroupLoggedOut").hidden = false;
+            document.getElementById("usrBtnGroupLoggedIn").hidden = true;
+        }
+        else {
+            var xmlHttp2 = new XMLHttpRequest();
+            xmlHttp2.open("GET", "/api/getuserbyid?id=" + sessionStorage.getItem("userid"));
+
+            xmlHttp2.onload = () => {
+                let user = JSON.parse(xmlHttp2.responseText);
+                document.getElementById("usrBtnGroupLoggedIn").innerHTML =
+                    "<div>Welcome " + user["firstName"] + " " + user["lastName"] + "!</div><div>" + user["email"] + "</div>";
+            };
+
+            xmlHttp2.send();
+
+            document.getElementById("usrBtnGroupLoggedIn").hidden = false;
+            document.getElementById("usrBtnGroupLoggedOut").hidden = true;
+        }
+    };
+
+    xmlHttp.send(data);
+</script>
+
+<div class="userButtons" id="usrBtnGroupLoggedOut">
+    <h3>Make a difference:</h3>
+    <button class="btn btn-primary"><strong>SIGN-IN</strong></button>
+    <button class="btn btn-primary"><strong>REGISTER</strong></button><br/><br/>
+    <a>
+        <em>Thank you for helping fight hunger and reduce food waste!</em><br /><br/>
 </a>
+</div>
+<div class="userButtons" id="usrBtnGroupLoggedIn">
 </div>
