@@ -7,13 +7,19 @@
 
 <div class="userButtons">
     <form method="post">
-        <label>Organization Name:</label><input class="textInput" name="orgName" /><br/>
+        <label>First Name:</label><input class="textInput" name="fName" /><br />
+        <label>Last Name:</label><input class="textInput" name="lName" /><br />
+        <label>Phone:</label><input class="textInput" name="phone" /><br />
+        <label>Email:</label><input class="textInput" name="email" /><br />
+        <label>Create Password:</label><input type="password" class="textInput" name="password" /><br />
+        <label>Confirm Password:</label><input type="password" class="textInput" name="passValidate" /><br />
+        <label>Organization Name:</label><input class="textInput" name="orgName" /><br />
         <label>Organization Type: </label><select class="dropdown">
             @foreach (Models.Type type in Services.TypesService.GetTypesService.GetTypes("org_types"))
             {
                 <option>@type.Name</option>
             }
-        </select><br/>
+        </select><br />
         <button type="submit" class="btn btn-primary">
             <i>Save</i>
         </button>
